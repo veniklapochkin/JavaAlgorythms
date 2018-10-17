@@ -1,89 +1,130 @@
-
 package com.algorythmspack.arrays;
 
 /**
  *
  * @author Vladislav_Borisov
  */
-
-
 public class OOPArray {
-    private long[] array;
+
+    private int[] array;
     private int nElems; // amount of elements
-    
-    public OOPArray(int max){ 
-        array = new long[max];
+
+    public OOPArray(int max) {
+        array = new int[max];
         nElems = 0;
     }
-    
-    public boolean find(long searchKey){
+
+    public boolean find(int searchKey) {
         int i;
-        for (i = 0; i < nElems; i++) 
-            if(array[i] == searchKey)
+        for (i = 0; i < nElems; i++) {
+            if (array[i] == searchKey) {
                 break;
-        
-        if(i == nElems)     // find last elemement
+            }
+        }
+
+        if (i == nElems) // find last elemement
+        {
             return false;   // yes
-        else
+        } else {
             return true;    // no
+        }
     }
-    
-    public void insert(long value){
+
+    public void insert(int value) {
         array[nElems] = value;
         nElems++;
+        
     }
-    
-    public boolean delete(long value){
+
+    public boolean delete(int value) {
         int i;
         for (i = 0; i < nElems; i++) { // search element
-            if(value == array[i])
+            if (value == array[i]) {
                 break;
-        }
-        if(i == nElems)
-            return false;   
-        else    // value found
-            for (int k = i; k < nElems; k++) { // shift of elements
-                array[k] = array[k+1];
             }
-            nElems--;
-            return true;
+        }
+        if (i == nElems) {
+            return false;
+        } else // value found
+        {
+            for (int k = i; k < nElems; k++) { // shift of elements
+                array[k] = array[k + 1];
+            }
+        }
+        nElems--;
+        return true;
     }
-    
-    public void display(){
+    public void getMax() {
+        int maxValue = 0;
         for (int i = 0; i < nElems; i++) {
-            System.out.print(array[i]+" ");
+            if (array[i] > maxValue) {
+                maxValue = array[i];
+            }
+        }
+        System.out.println("Max value of array: " + maxValue);
+    }
+
+    public void isEmpty() {
+        if (array.length == 0) {
+            System.out.println("Array is Empty");
+        } else {
+            System.out.println("Array of " + array.length + " elemets");
+        }
+    }
+    public boolean noDup(){
+        for (int i = 0; i < nElems; i++) {
+            for (int j = i+1; j < nElems; j++) {
+                if(i!=j &&array[i] == array[j]){
+                    delete(array[i]);
+                    
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void display() {
+        for (int i = 0; i < nElems; i++) {
+            System.out.print(array[i] + " ");
             System.out.println("");
         }
     }
 }
 
-class Array{
+class Array {
+
     public static void main(String[] args) {
         int maxSize = 100;
         OOPArray array = new OOPArray(maxSize);
-        
+
+        array.isEmpty();
+
         array.insert(0);
         array.insert(1);
         array.insert(2);
         array.insert(3);
-        array.insert(4);
+        array.insert(3);
         array.insert(5);
         array.insert(6);
         array.insert(7);
         array.insert(8);
-        
+       
+        array.noDup();
+        array.getMax();
         array.display();
-        
+
         int searchKey = 34;
-        if(array.find(searchKey))
+        if (array.find(searchKey)) {
             System.out.println("Found " + searchKey);
-        else
+        } else {
             System.out.println("Can't find " + searchKey);
-        
+        }
+
         array.delete(4);
         array.delete(5);
-        array.delete(6);
-        
+        array.delete(8);
+
+        array.getMax();
         array.display();
     }
 }

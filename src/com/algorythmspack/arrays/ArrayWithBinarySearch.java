@@ -7,17 +7,17 @@ package com.algorythmspack.arrays;
  */
 public class ArrayWithBinarySearch {
     
-    private long[] array;
+    private int[] array;
     private int nElems; // amount of elements
     
     public ArrayWithBinarySearch(int max){ 
-        array = new long[max];
+        array = new int[max];
         nElems = 0;
     }
     
     public int size(){return nElems;}
     
-    public int find(long searchKey){ // binary search
+    public int find(int searchKey){ // binary search
        int lowerBound = 0;
        int upperBound = nElems - 1;
        int curIn;
@@ -38,7 +38,7 @@ public class ArrayWithBinarySearch {
        }
     }
     
-    public void insert(long value){
+    public void insert(int value){
         int j;
         for (j = 0; j < nElems; j++) {
             if(array[j] > value)
@@ -52,7 +52,7 @@ public class ArrayWithBinarySearch {
         nElems++;
     }
     
-    public boolean delete(long value){
+    public boolean delete(int value){
         int j = find(value);
         if(j==nElems)
             return false;
@@ -66,6 +66,34 @@ public class ArrayWithBinarySearch {
         return true;
     }
     
+        public void getMax(){
+        int maxValue = 0;
+        for (int i = 0; i < nElems; i++) {
+            if(array[i] > maxValue)
+                maxValue = array[i];
+        }
+        System.out.println("Max value of array: " + maxValue);
+    }
+    
+    public void isEmpty(){
+        if(array.length == 0)
+            System.out.println("Array is Empty");
+        else
+            System.out.println("Array of " + array.length + " elemets");
+    }
+    
+    public boolean noDup(){
+        for (int i = 0; i < nElems; i++) {
+            for (int j = i+1; j < nElems; j++) {
+                if(i!=j &&array[i] == array[j]){
+                    delete(array[i]);
+                    
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public void display(){
         for (int i = 0; i < nElems; i++) {
             System.out.print(array[i]+" ");
@@ -79,16 +107,20 @@ class Launcher{
         int maxSize = 100;
         ArrayWithBinarySearch array = new ArrayWithBinarySearch(maxSize);
         
+        array.isEmpty();
+        
         array.insert(10);
         array.insert(21);
         array.insert(12);
         array.insert(34);
         array.insert(14);
         array.insert(53);
-        array.insert(56);
+        array.insert(53);
         array.insert(76);
         array.insert(38);
         
+        array.noDup();
+        array.getMax();
         array.display();
         
         int searchKey = 76;
