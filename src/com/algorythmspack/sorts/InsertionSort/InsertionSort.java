@@ -17,7 +17,7 @@ public class InsertionSort {
     
     private int[] array;
     private int nElems;
-
+    
     public InsertionSort(int max) {
         array = new int[max];
         nElems = 0;
@@ -51,7 +51,16 @@ public class InsertionSort {
         display();
     }
 
-
+    public void median(){
+        int median;
+        if(array.length % 2 == 0){
+            median = ((int) array[array.length/2] + (int) array[array.length/2 - 1])/2;
+        }
+        else{
+            median = (int) array[array.length/2];
+        }
+        System.out.println("Median: " + median);
+    }
     public void display() {
         System.out.println(Arrays.toString(array));
     }
@@ -67,7 +76,7 @@ class Launcher {
         Random random = new Random();
 
         InsertionSort array = new InsertionSort(maxSize);
-
+        //**Generate random array*/
         for (int i = 0; i < maxSize; i++) {
             int randNum = random.nextInt(maxSize);
             array.insert(randNum);
@@ -76,6 +85,6 @@ class Launcher {
         System.out.print("Source array: ");
         array.display();
         array.insertionSort();
-
+        array.median();
     }
 }
