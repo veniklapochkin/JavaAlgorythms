@@ -1,4 +1,4 @@
-package com.algorythmspack.LinkedList;
+package com.algorythmspack.LinkList;
 
 /**
  *

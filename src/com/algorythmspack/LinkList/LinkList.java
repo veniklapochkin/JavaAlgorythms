@@ -1,7 +1,7 @@
 
 
 
-package com.algorythmspack.LinkedList;
+package com.algorythmspack.LinkList;
 
 /**
 
@@ -23,10 +23,10 @@ class Link{
         System.out.println("{" + iData +" , " + + dData +"}");
     }
 }
-public class LinkedList {
+public class LinkList {
     private Link first; // link on the fitst elem in List
     
-    public LinkedList(){
+    public LinkList(){
         first = null;   // empty List
     }
     
@@ -90,7 +90,7 @@ public class LinkedList {
 }
 class LinkListApp{
     public static void main(String[] args) {
-        LinkedList tList = new LinkedList();
+        LinkList tList = new LinkList();
         tList.insertFirst(22, 1.99);
         tList.insertFirst(32, 2.99);
         tList.insertFirst(42, 3.99);
